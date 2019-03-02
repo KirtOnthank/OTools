@@ -10,15 +10,21 @@ resp.pyro(x, flow1, flow2, weight1, weight2, back1 = 0, back2 = 0,
 \arguments{
 \item{x}{Dataframe from read.pyro from Pyro Oxygen Logger files}
 
+\item{flow1}{Flow rates through the first respirometer measured in liters per minute}
+
+\item{flow2}{Flow rates through the second respirometer measured in liters per minute}
+
+\item{weight1}{Weight of the organism place into the first respirometer measured in grams.}
+
+\item{weight2}{Weight of the organism place into the second respirometer measured in grams.}
+
+\item{back1}{Background respiration of the first respirometer as read out by the function back.pyro}
+
+\item{back2}{Background respiration of the second respirometer as read out by the function back.pyro}
+
 \item{start}{The position of the file, in hours, to begin calculating respiration.}
 
 \item{end}{The position of the file, in hours, to end calculating respiration.}
-
-\item{flow}{Flow rates through the first (flow1) and second (flow2) respirometers measured in liters per minute}
-
-\item{weight}{Weight of the organism place into the first (weight1) and second (weight2) respirometers measured in grams.}
-
-\item{back}{Background respiration of the first (back1) and second (back2) respirometers as read out by the function back.pyro}
 }
 \value{
 Returns a data frame of four columns: oxy1 & oxy 2, the oxygen concentrations in the outflows of respirometers 1 and 2 respectively, and resp1 & resp2, respiration rates in the first and second respirometers, respectively.
