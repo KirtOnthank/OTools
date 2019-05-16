@@ -1,13 +1,13 @@
 Package: OTools
 Type: Package
 Title: Onthank Lab Tools
-Version: 0.23
-Date: 2018-10-2
+Version: 0.24
+Date: 2019-5-16
 Author: Kirt L. Onthank
 Maintainer: Kirt L. Onthank <Kirt.Onthank@wallawalla.edu>
 Description: A collection of tools frequently used in the Onthank Cephalopod
-    Ecological Physiology Lab for tasks in ecological physiology in marine
-    systems.
+    Ecological Physiology Lab for tasks in ocean acidification ecological physiology
+    in marine systems.
 License: CC0
 Imports:
     seacarb,

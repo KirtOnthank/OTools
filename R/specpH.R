@@ -13,7 +13,7 @@
 #' @return Returns a value or vector containing the calculated pH values.
 #' @export
 
-pHspec=function(salinity=32,temp=11,A434,A578,A730,B434,B578,B730,adj=c(0,1)) {
+specpH=function(salinity=32,temp=11,A434,A578,A730,B434,B578,B730,adj=c(0,1)) {
   K=temp+273.15
   pK2=(1245.69/K)+3.8275+0.00211*(35-salinity)
   A1A2=(A578-B578-(A730-B730))/(A434-B434-(A730-B730))
