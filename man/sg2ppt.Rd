@@ -4,8 +4,13 @@
 \alias{sg2ppt}
 \title{Convert salinity readings from a hydrometer in specific gravity to parts per thousand}
 \usage{
-sg2ppt(read, temp, cal.stand = c(25, 30, 35), cal.read = c(1.0185,
-  1.022, 1.0256), cal.temp = 25)
+sg2ppt(
+  read,
+  temp,
+  cal.stand = c(25, 30, 35),
+  cal.read = c(1.0185, 1.022, 1.0256),
+  cal.temp = 25
+)
 }
 \arguments{
 \item{read}{Reading of the hydrometer. Can be a vector or single value.}

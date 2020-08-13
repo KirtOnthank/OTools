@@ -4,8 +4,17 @@
 \alias{specpH}
 \title{Calculates pH of seawater from spectrophotometric data}
 \usage{
-specpH(salinity = 32, temp = 11, A434, A578, A730, B434, B578, B730,
-  adj = c(0, 1))
+specpH(
+  salinity = 32,
+  temp = 11,
+  A434,
+  A578,
+  A730,
+  B434,
+  B578,
+  B730,
+  adj = c(0, 1)
+)
 }
 \arguments{
 \item{salinity}{Salinity of water in ppt or psu. Default is 32.  Can be a vector}

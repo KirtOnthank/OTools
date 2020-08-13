@@ -4,8 +4,17 @@
 \alias{resp.pyro}
 \title{Calculate respiration rates from Pyro Oxygen Logger files}
 \usage{
-resp.pyro(x, flow1, flow2, weight1, weight2, back1 = 0, back2 = 0,
-  start = 0, end = max(x$times/3600))
+resp.pyro(
+  x,
+  flow1,
+  flow2,
+  weight1,
+  weight2,
+  back1 = 0,
+  back2 = 0,
+  start = 0,
+  end = max(x$times/3600)
+)
 }
 \arguments{
 \item{x}{Dataframe from read.pyro from Pyro Oxygen Logger files}

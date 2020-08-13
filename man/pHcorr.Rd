@@ -4,8 +4,7 @@
 \alias{pHcorr}
 \title{Determines dye addition correction for use in spectrophotometric pH determination.}
 \usage{
-pHcorr(known_pH, salinity = 32, temp = 11, A434, A578, A730, B434,
-  B578, B730)
+pHcorr(known_pH, salinity = 32, temp = 11, A434, A578, A730, B434, B578, B730)
 }
 \arguments{
 \item{known_pH}{Known pH values of solutions. Can be a vector}
