@@ -9,14 +9,10 @@
 #' @param smooth The number of points over which to smooth the data.  Data points for smooth will be equall distributed before and after the point to be smoothed, and points will be weighted by a guassian distrbution with distance from point to be smoothed.
 #' @return Returns a vector of respiration rates in umol/g/hr.
 #' @export
-closed.resp=function(x, volume, weight, channel=1, back=0,smooth=0){
-  print('Click on graph to choose begining and end of data to use, then click "finish"')
+closed.resp=function(x, volume, weight, channel=1, back=0, smooth=0){
   coeff=dnorm(seq(from=-3,to=3,length.out=smooth+1))/sum(dnorm(seq(from=-3,to=3,length.out=smooth+1)))
   work=x[complete.cases(x[,3+channel]),]
   work[,3+channel]=filter(work[,3+channel],coeff,sides=2)
-  plot(work[,3+channel])
-  coords=identify(work[,3+channel])
-  work=work[coords[1]:coords[2],]
   elap=as.numeric(difftime(work$time[4],work$time[3],units="secs"))
   clock=work$times[2:length(work[,1])]-work$times[1:(length(work[,1])-1)]
   back1=back*(elap/60)
