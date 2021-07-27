@@ -16,7 +16,7 @@ umolO2L(value, salinity = 32, temp = 11, atmP = 1013.25)
 \item{atmP}{Atmospheric pressure in mbar or hPa. Default is 1013.25. Can be a vector.}
 }
 \value{
-Returns a dataframe with one row per measured oxygen concentration value entered. Columns report salinity, temperature and atmospheric pressure used, and then retuns oxygen concentration/pressure in Saturation (%), kilopascals (kPa), hectopascals or millibar (hPa.mbar), torr, umolO2/liter, and mgO2/L.
+Returns a dataframe with one row per measured oxygen concentration value entered. Columns report salinity, temperature and atmospheric pressure used, and then retuns oxygen concentration/pressure in Saturation (percent), kilopascals (kPa), hectopascals or millibar (hPa.mbar), torr, umolO2/liter, and mgO2/L.
 }
 \description{
 This function will convert between oxygen concentration in water expressed in umolO2/L to other units of concentration and pressure.
