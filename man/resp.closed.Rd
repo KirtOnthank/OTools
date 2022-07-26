@@ -4,7 +4,16 @@
 \alias{resp.closed}
 \title{Calculate respiration rates from Pyro Oxygen Logger files of closed respirometery}
 \usage{
-resp.closed(x, volume, weight, channel = 1, back = 0, smooth = 0)
+resp.closed(
+  x,
+  volume,
+  weight,
+  channel = 1,
+  back = 0,
+  smooth = "none",
+  smooth.span = 0.1,
+  smooth.n = 0
+)
 }
 \arguments{
 \item{x}{Dataframe from read.pyro from Pyro Oxygen Logger files}
@@ -17,7 +26,11 @@ resp.closed(x, volume, weight, channel = 1, back = 0, smooth = 0)
 
 \item{back}{The background respiration rate of the respirometer as determined from back.closed()}
 
-\item{smooth}{The number of points over which to smooth the data.  Data points for smooth will be equally distributed before and after the point to be smoothed, and points will be weighted by a guassian distrbution with distance from point to be smoothed.}
+\item{smooth}{Smoothing method too apply. Current options are "weighted", "loess", or "none". In "weighted" smoothing a moving average will be performed with and equal distribution of points before and after the point to be smoothed will be used. Points used in the weighted average will be weighted by a guassian distrbution with distance of "smooth.n" from the point to be smoothed. In "loess" smoothing, a locally weighted scatterplot smoothing routine will be applied to the data with a span of "smooth.span". Using an option of "none" will result in no smoothing.}
+
+\item{smooth.span}{The span used during "loess" smoothing.}
+
+\item{smooth.n}{The number of points over which to smooth the data in weighted smoothing.}
 }
 \value{
 Returns a data frame of four columns: times, oxy, po2 and resp. The column "times" is time in seconds. The column "oxy" is the oxygen concentration in the respirometer outflow in umolO2/L. The column "po2" is oxygen partial pressure in the respirometer outflow in kPa. The column "resp" is respiration rate in umolO2/g/hr.

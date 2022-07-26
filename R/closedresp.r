@@ -6,13 +6,22 @@
 #' @param weight Weight of the organism place into the respirometer measured in grams.
 #' @param channel The channel from which oxygen concentration data should be used.
 #' @param back The background respiration rate of the respirometer as determined from back.closed()
-#' @param smooth The number of points over which to smooth the data.  Data points for smooth will be equally distributed before and after the point to be smoothed, and points will be weighted by a guassian distrbution with distance from point to be smoothed.
+#' @param smooth Smoothing method too apply. Current options are "weighted", "loess", or "none". In "weighted" smoothing a moving average will be performed with and equal distribution of points before and after the point to be smoothed will be used. Points used in the weighted average will be weighted by a guassian distrbution with distance of "smooth.n" from the point to be smoothed. In "loess" smoothing, a locally weighted scatterplot smoothing routine will be applied to the data with a span of "smooth.span". Using an option of "none" will result in no smoothing.
+#' @param smooth.span The span used during "loess" smoothing.
+#' @param smooth.n The number of points over which to smooth the data in weighted smoothing.  
 #' @return Returns a data frame of four columns: times, oxy, po2 and resp. The column "times" is time in seconds. The column "oxy" is the oxygen concentration in the respirometer outflow in umolO2/L. The column "po2" is oxygen partial pressure in the respirometer outflow in kPa. The column "resp" is respiration rate in umolO2/g/hr.
 #' @export
-resp.closed=function(x, volume, weight, channel=1, back=0, smooth=0){
-  coeff=dnorm(seq(from=-3,to=3,length.out=smooth+1))/sum(dnorm(seq(from=-3,to=3,length.out=smooth+1)))
+resp.closed=function(x, volume, weight, channel=1, back=0, smooth="none",smooth.span=0.1,smooth.n=0){
   work=x[complete.cases(x[,3+channel]),]
-  work[,3+channel]=filter(work[,3+channel],coeff,sides=2)
+  if (smooth=="weighted"){
+    coeff=dnorm(seq(from=-3,to=3,length.out=smooth.n+1))/sum(dnorm(seq(from=-3,to=3,length.out=smooth.n+1)))
+    work[,3+channel]=filter(work[,3+channel],coeff,sides=2)
+  }
+  if (smooth=="loess"){
+    oxy.lo=loess(work[,3+channel]~work$times,span=smooth.span)
+    oxy.smooth=predict(oxy.lo, data.frame(times = work$times))
+    work[,3+channel]=oxy.smooth
+  }
   elap=as.numeric(difftime(work$time[4],work$time[3],units="secs"))
   clock=work$times[2:nrow(work)]-work$times[1:(nrow(work)-1)]
   back1=back*(elap/60)
