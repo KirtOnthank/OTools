@@ -22,8 +22,7 @@ resp.closed=function(x, volume, weight, channel=1, back=0, smooth="none",smooth.
     oxy.smooth=predict(oxy.lo, data.frame(times = work$times))
     work[,3+channel]=oxy.smooth
   }
-  elap=as.numeric(difftime(work$time[4],work$time[3],units="secs"))
-  clock=work$times[2:nrow(work)]-work$times[1:(nrow(work)-1)]
+  elap=work$times[2:nrow(work)]-work$times[1:(nrow(work)-1)]
   back1=back*(elap/60)
   oxy=work[1:(nrow(work)-1),channel+3]-work[2:nrow(work),channel+3]-back1
   resp=((oxy*(3600/elap))*volume)/weight
